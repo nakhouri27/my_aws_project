@@ -1,0 +1,299 @@
+[
+  {
+    "Action": {
+      "Block": {}
+    },
+    "Name": "BlockbyCountyofOrigin",
+    "Priority": 1,
+    "Statement": {
+      "GeoMatchStatement": {
+        "CountryCodes": [
+          "PK",
+          "KP",
+          "TR",
+          "RO",
+          "IR",
+          "NG",
+          "KR",
+          "CN",
+          "TW",
+          "RU"
+        ]
+      }
+    },
+    "VisibilityConfig": {
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "WAFBlockbyCountyofOrigin",
+      "SampledRequestsEnabled": true
+    }
+  },
+  {
+    "Action": {
+      "Block": {}
+    },
+    "Name": "Staging-SQL-Injectoons",
+    "Priority": 2,
+    "Statement": {
+      "OrStatement": {
+        "Statements": [
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "Body": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "QueryString": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "authorization"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "cookie"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "QueryString": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "UriPath": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "cookie"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "authorization"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "UriPath": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "SqliMatchStatement": {
+              "FieldToMatch": {
+                "Body": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "VisibilityConfig": {
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "StagingSQLInjectoons",
+      "SampledRequestsEnabled": true
+    }
+  },
+  {
+    "Action": {
+      "Count": {}
+    },
+    "Name": "Staging-XSS",
+    "Priority": 3,
+    "Statement": {
+      "OrStatement": {
+        "Statements": [
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "QueryString": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "QueryString": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "cookie"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "UriPath": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "SingleHeader": {
+                  "Name": "cookie"
+                }
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "UriPath": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "HTML_ENTITY_DECODE"
+                }
+              ]
+            }
+          },
+          {
+            "XssMatchStatement": {
+              "FieldToMatch": {
+                "Body": {}
+              },
+              "TextTransformations": [
+                {
+                  "Priority": 0,
+                  "Type": "URL_DECODE"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "VisibilityConfig": {
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "StagingXSS",
+      "SampledRequestsEnabled": true
+    }
+  }
+]

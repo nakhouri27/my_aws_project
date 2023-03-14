@@ -1,0 +1,32 @@
+What is Prometheus?
+Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, 
+many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. 
+It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, 
+Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.
+
+Prometheus collects and stores its metrics as time series data, i.e. metrics information is stored with the timestamp at which it was recorded,
+ alongside optional key-value pairs called labels.
+
+For more elaborate overviews of Prometheus, see the resources linked from the media section.
+
+Features
+Prometheus's main features are:
+
+a multi-dimensional data model with time series data identified by metric name and key/value pairs
+PromQL, a flexible query language to leverage this dimensionality
+no reliance on distributed storage; single server nodes are autonomous
+time series collection happens via a pull model over HTTP
+pushing time series is supported via an intermediary gateway
+targets are discovered via service discovery or static configuration
+multiple modes of graphing and dashboarding support
+
+Prometheus works well for recording any purely numeric time series. It fits both machine-centric monitoring as well as monitoring of highly dynamic 
+service-oriented architectures. In a world of microservices, its support for multi-dimensional data collection and querying is a particular strength.
+
+Prometheus is designed for reliability, to be the system we go to during an outage to allow we to quickly diagnose problems. 
+Each Prometheus server is standalone, not depending on network storage or other remote services. we can rely on it when other parts of 
+wer infrastructure are broken, and we do not need to setup extensive infrastructure to use it.
+
+Prometheus values reliability. we can always view what statistics are available about wer system, even under failure conditions. 
+If we need 100% accuracy, such as for per-request billing, Prometheus is not a good choice as the collected data will likely not be detailed and complete enough. 
+In such a case we would be best off using some other system to collect and analyze the data for billing, and Prometheus for the rest of wer monitoring.

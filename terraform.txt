@@ -1,0 +1,28 @@
+length: It determines the length of a given list, map, or string. If given a list or map, the result is the number of elements in that collection. 
+If given a string, the result is the number of characters in the string.
+
+merge takes an arbitrary number of maps or objects, and returns a single map or object that contains a merged set of elements from all arguments. 
+If more than one given map or object defines the same key or attribute, then the one that is later in the argument sequence takes precedence.
+
+The lookup() function can be used to lookup a particular value inside of a map , given its key and if the given key does not exist, 
+the given default value is returned instead: lookup(map, key, default)
+
+compact takes a list of strings and returns a new list with any empty string elements removed.
+
+split produces a list by dividing a given string at all occurrences of a given separator. split(separator, string) split(separator, string) 
+
+coalesce takes any number of arguments and returns the first one that isn't null or an empty string. All of the arguments must be of the same type. 
+Terraform will try to convert mismatched arguments to the most general of the types that all arguments can convert to, or return an error if the types are incompatible.
+
+The format function produces a string by formatting a number of other values according to a specification string. 
+
+element retrieves a single element from a list. 
+The index is zero-based. This function produces an error if used with an empty list. The index must be a non-negative integer.
+
+regex applies a regular expression to a string and returns the matching substrings. regex(pattern, string) regex(pattern, string) 
+
+For instance, the lower() function converts all uppercase characters to lowercase, while the upper() function does the opposite
+
+max takes one or more numbers and returns the greatest number from the set.
+
+tomap : tomap converts its argument to a map value. Explicit type conversions are rarely necessary in Terraform because it will convert types automatically where required. 
